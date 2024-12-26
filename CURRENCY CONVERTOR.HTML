@@ -35,7 +35,7 @@
     <div id="body">
     <div id="page">
         <h1>Currency Convertor</h1>
-    <img id="aa" src="https://flagsapi.com/IN/shiny/64.png">
+    <img id="aa" src="https://flagsapi.com/US/shiny/64.png">
     <div>
         <h2> <b><i><ul>From</ul></i></b></h2><input type="text" id="search1" placeholder="Search country..." />
         <select name="country" id="country1"></select>
@@ -244,7 +244,9 @@
                     let option = document.createElement("option");
                     option.value = key;
                     option.textContent = key;
-                    if (key === "INR") option.selected = true; // Default selection
+                    if (key === "USD" && select==select1) option.selected = true;
+                    if (key === "INR" && select==select2) option.selected = true;
+                     // Default selection
                     select.append(option);
                 }
             }
@@ -312,13 +314,23 @@
             const api=`https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${s1}.json`;
         async function f()
         {
+            try{
+
+            
             let promise = await fetch(api);
             let data=await promise.json();
             let cc=data[s1][s2];
             q.innerText=`1 ${s1}=${cc}${s2}`;
 
             qq.innerText=`Total amount is ${cc*n.value} ${s2}`;
+            }
+            catch (error) {
+    q.innerText = "Error fetching data. Please try again.";
+    qq.innerText = "";
+   
+}
         }
+
         f();
         }
         const submit=document.querySelector("#submit");
