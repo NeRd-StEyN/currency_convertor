@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Country Search</title>
+    <style>
+        h1{
+            text-align: center;
+            color: black;
+        }
+        #body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ensure the body takes full height */
+    margin: 0; /* Remove default margin */
+    background: linear-gradient(to right, purple, blue);
+}
+*{
+    margin: 0;
+    padding: 0;
+}
+#page {
+    border: 2px solid black;
+    padding: 20px;
+    border-radius: 10px; /* Optional, for rounded corners */
+    background: linear-gradient(to left, purple, blue);/* Optional, to make the content stand out */
+}
+
+    </style>
+</head>
+<body>
+
+    <div id="body">
+    <div id="page">
+        <h1>Currency Convertor</h1>
+    <img id="aa" src="https://flagsapi.com/IN/shiny/64.png">
+    <div>
+        <h2> <b><i><ul>From</ul></i></b></h2><input type="text" id="search1" placeholder="Search country..." />
+        <select name="country" id="country1"></select>
+
+        
+    </div>
+    <br>
+ 
+
+    
+    <img id="bb" src="https://flagsapi.com/IN/shiny/64.png">
+    <div>
+        <h2> <b><i><ul>To</ul></i></b></h2><input type="text" id="search2" placeholder="Search country..." />
+        <select name="country" id="country2"></select>
+
+        
+    </div>
+    <br>
+
+    <h2> <b><i><ul>Enter Amount</ul></i></b></h2> <input type="number" id="n" name="quantity" min="1">
+    <br>
+    <br>
+    <button type="submit" id="submit">Get Exchange Rate</button>
+<br>
+    <div id="abc">
+        <br>
+        <h3></h3>
+        <br>
+        <h2></h2>
+    </div>
+
+
+    </div>
+    </div>
+
+
+    <script>
+        const countryList = {
+            AED: "AE",
+            AFN: "AF",
+            XCD: "AG",
+            ALL: "AL",
+            AMD: "AM",
+            ANG: "AN",
+            AOA: "AO",
+            AQD: "AQ",
+            ARS: "AR",
+            AUD: "AU",
+            AZN: "AZ",
+            BAM: "BA",
+            BBD: "BB",
+            BDT: "BD",
+            XOF: "BE",
+            BGN: "BG",
+            BHD: "BH",
+            BIF: "BI",
+            BMD: "BM",
+            BND: "BN",
+            BOB: "BO",
+            BRL: "BR",
+            BSD: "BS",
+            NOK: "BV",
+            BWP: "BW",
+            BYR: "BY",
+            BZD: "BZ",
+            CAD: "CA",
+            CDF: "CD",
+            XAF: "CF",
+            CHF: "CH",
+            CLP: "CL",
+            CNY: "CN",
+            COP: "CO",
+            CRC: "CR",
+            CUP: "CU",
+            CVE: "CV",
+            CYP: "CY",
+            CZK: "CZ",
+            DJF: "DJ",
+            DKK: "DK",
+            DOP: "DO",
+            DZD: "DZ",
+            ECS: "EC",
+            EEK: "EE",
+            EGP: "EG",
+            ETB: "ET",
+            EUR: "FR",
+            FJD: "FJ",
+            FKP: "FK",
+            GBP: "GB",
+            GEL: "GE",
+            GGP: "GG",
+            GHS: "GH",
+            GIP: "GI",
+            GMD: "GM",
+            GNF: "GN",
+            GTQ: "GT",
+            GYD: "GY",
+            HKD: "HK",
+            HNL: "HN",
+            HRK: "HR",
+            HTG: "HT",
+            HUF: "HU",
+            IDR: "ID",
+            ILS: "IL",
+            INR: "IN",
+            IQD: "IQ",
+            IRR: "IR",
+            ISK: "IS",
+            JMD: "JM",
+            JOD: "JO",
+            JPY: "JP",
+            KES: "KE",
+            KGS: "KG",
+            KHR: "KH",
+            KMF: "KM",
+            KPW: "KP",
+            KRW: "KR",
+            KWD: "KW",
+            KYD: "KY",
+            KZT: "KZ",
+            LAK: "LA",
+            LBP: "LB",
+            LKR: "LK",
+            LRD: "LR",
+            LSL: "LS",
+            LTL: "LT",
+            LVL: "LV",
+            LYD: "LY",
+            MAD: "MA",
+            MDL: "MD",
+            MGA: "MG",
+            MKD: "MK",
+            MMK: "MM",
+            MNT: "MN",
+            MOP: "MO",
+            MRO: "MR",
+            MTL: "MT",
+            MUR: "MU",
+            MVR: "MV",
+            MWK: "MW",
+            MXN: "MX",
+            MYR: "MY",
+            MZN: "MZ",
+            NAD: "NA",
+            XPF: "NC",
+            NGN: "NG",
+            NIO: "NI",
+            NPR: "NP",
+            NZD: "NZ",
+            OMR: "OM",
+            PAB: "PA",
+            PEN: "PE",
+            PGK: "PG",
+            PHP: "PH",
+            PKR: "PK",
+            PLN: "PL",
+            PYG: "PY",
+            QAR: "QA",
+            RON: "RO",
+            RSD: "RS",
+            RUB: "RU",
+            RWF: "RW",
+            SAR: "SA",
+            SBD: "SB",
+            SCR: "SC",
+            SDG: "SD",
+            SEK: "SE",
+            SGD: "SG",
+            SKK: "SK",
+            SLL: "SL",
+            SOS: "SO",
+            SRD: "SR",
+            STD: "ST",
+            SVC: "SV",
+            SYP: "SY",
+            SZL: "SZ",
+            THB: "TH",
+            TJS: "TJ",
+            TMT: "TM",
+            TND: "TN",
+            TOP: "TO",
+            TRY: "TR",
+            TTD: "TT",
+            TWD: "TW",
+            TZS: "TZ",
+            UAH: "UA",
+            UGX: "UG",
+            USD: "US",
+            UYU: "UY",
+            UZS: "UZ",
+            VEF: "VE",
+            VND: "VN",
+            VUV: "VU",
+            YER: "YE",
+            ZAR: "ZA",
+            ZMK: "ZM",
+            ZWD: "ZW",
+        };
+        let n=document.querySelector("#n");
+        let q=document.querySelector("#abc h3");
+        let qq=document.querySelector("#abc h2");
+        function populateDropdown(select, filter = "") {
+            select.innerHTML = ""; // Clear previous options
+            for (let key in countryList) {
+                if (key.toLowerCase().startsWith(filter.toLowerCase())) {
+                    let option = document.createElement("option");
+                    option.value = key;
+                    option.textContent = key;
+                    if (key === "INR") option.selected = true; // Default selection
+                    select.append(option);
+                }
+            }
+        }
+
+        // Select elements and input fields
+        const select1 = document.querySelector("#country1");
+        const searchInput1 = document.querySelector("#search1");
+
+        const select2 = document.querySelector("#country2");
+        const searchInput2 = document.querySelector("#search2");
+
+        // Populate both dropdowns initially
+        populateDropdown(select1, "");
+        populateDropdown(select2, "");
+
+        // Update dropdown when search input changes for select1
+        searchInput1.addEventListener("input", (event) => {
+            populateDropdown(select1, event.target.value);
+            const searchValue = event.target.value.toUpperCase();
+            if (countryList[searchValue]) {
+                updateFlag(searchValue);
+            }
+        });
+
+        // Update dropdown when search input changes for select2
+        searchInput2.addEventListener("input", (event) => {
+            populateDropdown(select2, event.target.value);
+            const searchValue = event.target.value.toUpperCase();
+            if (countryList[searchValue]) {
+                updateFlag1(searchValue);
+            }
+
+        });
+
+        // Update flag when dropdown changes
+        select1.addEventListener("change", (event) => {
+            updateFlag(event.target.value);
+        });
+        
+        select2.addEventListener("change", (event) => {
+            updateFlag1(event.target.value);
+        });
+
+        // Function to update the flag
+        function updateFlag(countryCode) {
+            const flagUrl = `https://flagsapi.com/${countryList[countryCode]}/shiny/64.png`;
+            document.querySelector("#aa").src = flagUrl;
+        }
+        function updateFlag1(countryCode) {
+            const flagUrl = `https://flagsapi.com/${countryList[countryCode]}/shiny/64.png`;
+            document.querySelector("#bb").src = flagUrl;
+        }
+
+        function getrate()
+        {
+            if(n.value==0 || n.value<0)
+        {
+            n.value=1;
+        }
+            
+            const s1=select1.value.toLowerCase();
+            const s2=select2.value.toLowerCase();
+       
+            const api=`https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/${s1}.json`;
+        async function f()
+        {
+            let promise = await fetch(api);
+            let data=await promise.json();
+            let cc=data[s1][s2];
+            q.innerText=`1 ${s1}=${cc}${s2}`;
+
+            qq.innerText=`Total amount is ${cc*n.value} ${s2}`;
+        }
+        f();
+        }
+        const submit=document.querySelector("#submit");
+        submit.addEventListener("click",getrate);
+        
+    </script>
+</body>
+</html>
