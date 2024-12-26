@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Country Search</title>
+    <title>Currency convertor</title>
     <style>
         h1{
             text-align: center;
@@ -21,23 +21,39 @@
     margin: 0;
     padding: 0;
 }
+select{
+    font-size: 20px;;
+}
+input{
+    font-size: 20px;;
+}
 #page {
     border: 2px solid black;
     padding: 20px;
     border-radius: 10px; /* Optional, for rounded corners */
+
     background: linear-gradient(to left, purple, blue);/* Optional, to make the content stand out */
 }
+button:hover{
+background-color: rgb(113, 19, 19);
+border:2px solid black;
 
+}
+
+
+button{
+    font-size: 30px;
+}
     </style>
 </head>
 <body>
 
     <div id="body">
     <div id="page">
-        <h1>Currency Convertor</h1>
+        <h1  style="font-size: 35px;">Currency Convertor</h1>
     <img id="aa" src="https://flagsapi.com/US/shiny/64.png">
     <div>
-        <h2> <b><i><ul>From</ul></i></b></h2><input type="text" id="search1" placeholder="Search country..." />
+        <h2  style="font-size: 25px;"> <b><i><ul>From</ul></i></b></h2><input type="text" id="search1" placeholder="Search country..." />
         <select name="country" id="country1"></select>
 
         
@@ -48,23 +64,23 @@
     
     <img id="bb" src="https://flagsapi.com/IN/shiny/64.png">
     <div>
-        <h2> <b><i><ul>To</ul></i></b></h2><input type="text" id="search2" placeholder="Search country..." />
+        <h2 style="font-size: 25px;"> <b><i><ul>To</ul></i></b></h2><input type="text" id="search2" placeholder="Search country..." />
         <select name="country" id="country2"></select>
 
         
     </div>
     <br>
 
-    <h2> <b><i><ul>Enter Amount</ul></i></b></h2> <input type="number" id="n" name="quantity" min="1">
+    <h2 style="font-size: 25px;"> <b><i><ul>Enter Amount</ul></i></b></h2> <input type="number" id="n" name="quantity" min="1">
     <br>
     <br>
     <button type="submit" id="submit">Get Exchange Rate</button>
 <br>
     <div id="abc">
         <br>
-        <h3></h3>
+        <h3 style="font-size: 25px;"><u></u></h3>
         <br>
-        <h2></h2>
+        <h2 style="font-size: 30px;"><u></u></h2>
     </div>
 
 
@@ -235,8 +251,8 @@
             ZWD: "ZW",
         };
         let n=document.querySelector("#n");
-        let q=document.querySelector("#abc h3");
-        let qq=document.querySelector("#abc h2");
+        let q=document.querySelector("#abc h3 u");
+        let qq=document.querySelector("#abc h2 u");
         function populateDropdown(select, filter = "") {
             select.innerHTML = ""; // Clear previous options
             for (let key in countryList) {
